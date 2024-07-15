@@ -11,7 +11,7 @@ const firebaseConfig = {
 };
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
-import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+import { initializeAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
 import { get, getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-database.js";
 
 const databaseApp = initializeApp(firebaseConfig);
@@ -19,7 +19,7 @@ var database = getDatabase(databaseApp);
 
 export function SaveData(key,data){
 
-    const auth = getAuth(databaseApp);
+    const auth = initializeAuth(databaseApp);
 
     onAuthStateChanged(auth, (user) => {
         console.log(user);
