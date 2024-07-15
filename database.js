@@ -10,6 +10,7 @@ const firebaseConfig = {
 	databaseURL: "https://woowzsitesdatabase-default-rtdb.firebaseio.com/"
 };
 
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
 import { get, getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-database.js";
 
@@ -17,6 +18,18 @@ const databaseApp = initializeApp(firebaseConfig);
 var database = getDatabase(databaseApp);
 
 export function SaveData(key,data){
+
+    const auth = getAuth();
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const email = user.email;
+        console.log(email)
+      } else {
+        console.log("User not logged in")
+      }
+    })
+
 	const dataref = ref(database, key);
 	set(dataref, data).then(()=>{console.log("Save to ["+key+"] database!");}).catch((error)=>{console.error("Error saving data for key [" + key + "]:",error);});
 }
