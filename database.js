@@ -19,7 +19,7 @@ var database = getDatabase(databaseApp);
 
 export function SaveData(key,data){
 
-    const auth = getAuth();
+    const auth = getAuth(databaseApp);
 
     onAuthStateChanged(auth, (user) => {
         console.log(user);
