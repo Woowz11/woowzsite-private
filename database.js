@@ -22,12 +22,7 @@ export function SaveData(key,data){
     const auth = getAuth();
 
     onAuthStateChanged(auth, (user) => {
-      if (user) {
-        const email = user.email;
-        console.log(email)
-      } else {
-        console.log("User not logged in")
-      }
+        console.log(user);
     })
 
 	const dataref = ref(database, key);
